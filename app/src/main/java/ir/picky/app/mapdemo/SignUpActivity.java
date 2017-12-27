@@ -1,5 +1,6 @@
 package ir.picky.app.mapdemo;
 
+import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -13,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -33,6 +35,8 @@ public class SignUpActivity extends AppCompatActivity {
     int verificationCode ;
     String phone;
     String aut_key;
+    int hasLname ;
+    Dialog signUpDialog ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +68,7 @@ public class SignUpActivity extends AppCompatActivity {
             Log.i("codejson" , message);
             verificationCode =  getUserCode(message);
             aut_key = getUserAutKey(message);
+            hasLname = getHasLname (message);
         }
     };
 
@@ -71,6 +76,7 @@ public class SignUpActivity extends AppCompatActivity {
         JSONObject json = null;
         try {
             json = new JSONObject(userCodeJson);
+            Toast.makeText(this, json.getString("registercode") , Toast.LENGTH_SHORT).show();
             return Integer.valueOf( json.getString("registercode"));
         } catch (JSONException e) {
             e.printStackTrace();
@@ -86,6 +92,17 @@ public class SignUpActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
             return "";
+        }
+    }
+
+    public int getHasLname (String userCodeJson) {
+        JSONObject json = null;
+        try {
+            json = new JSONObject(userCodeJson);
+            return ( Integer.valueOf(json.getString("haslname")) );
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return 0;
         }
     }
 
@@ -131,24 +148,36 @@ public class SignUpActivity extends AppCompatActivity {
 
             if ( code.equals(String.valueOf(verificationCode)) ) {
 
-                database = this.openOrCreateDatabase("Picky", MODE_PRIVATE, null);
-                //database.execSQL("INSERT INTO user (number) VALUES (' " + phone + " ')");
+                if  (hasLname == 0) {
+                    signUpDialog = new Dialog(this);
+                    signUpDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    signUpDialog.setContentView(R.layout.signup_dialog);
+                    signUpDialog.show();
+                } else {
+                    database = this.openOrCreateDatabase("Picky", MODE_PRIVATE, null);
+                    //database.execSQL("INSERT INTO user (number) VALUES (' " + phone + " ')");
 
-                ContentValues userValue = new ContentValues();
-                userValue.put("aut_key", aut_key); //These Fields should be your String values of actual column names
-                userValue.put("islogin", 1);
-                userValue.put("number" , ""+phone+"" );
-                //database.execSQL("UPDATE user SET aut_key = "+aut_key+ "WHERE number = "+ phone);
-                //database.execSQL("UPDATE user SET islogin =1 WHERE number = "+ phone);
-                //database.update("user" , userValue , "number="+phone , null );
-                database.insert("user" , null , userValue);
-                Intent intent = new Intent(this, MapsActivity.class);
-                startActivity(intent);
+                    ContentValues userValue = new ContentValues();
+                    userValue.put("aut_key", aut_key); //These Fields should be your String values of actual column names
+                    userValue.put("islogin", 1);
+                    userValue.put("number" , ""+phone+"" );
+                    //database.execSQL("UPDATE user SET aut_key = "+aut_key+ "WHERE number = "+ phone);
+                    //database.execSQL("UPDATE user SET islogin =1 WHERE number = "+ phone);
+                    //database.update("user" , userValue , "number="+phone , null );
+                    database.insert("user" , null , userValue);
+                    Intent intent = new Intent(this, MapsActivity.class);
+                    startActivity(intent);
+                }
+
             } else {
                 Toast.makeText(this, "کد وارد شده صحیح نیست.", Toast.LENGTH_SHORT).show();
             }
         }
 
+
+    }
+
+    public void signUpDetailHandler(View view) {
 
     }
 }

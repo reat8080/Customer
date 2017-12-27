@@ -41,8 +41,6 @@ public class RequestDetail extends AppCompatActivity {
                 .setFontAttrId(R.attr.fontPath)
                 .build());
 
-
-
         setContentView(R.layout.activity_request_detail);
 
         ActionBar actionBar = getSupportActionBar();
