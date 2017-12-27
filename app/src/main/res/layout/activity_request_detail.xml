@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="ir.picky.app.mapdemo.RequestDetail">
+
+        <TextView
+            android:id="@+id/pageTitle"
+            fontPath="font/yekan.ttf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#000080"
+            android:paddingBottom="20dp"
+            android:paddingTop="20dp"
+            android:text="اطلاعات تکمیلی"
+            android:textAlignment="center"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingPrefix" />
+
+        <LinearLayout
+            android:id="@+id/barType"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pageTitle">
+
+
+            <Button
+                android:id="@+id/barTypeButton"
+                fontPath="font/yekan.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="barTypeHadler"
+                android:text="نامشخص"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:ignore="MissingPrefix"
+                android:stateListAnimator="@null"
+                />
+
+            <TextView
+                android:id="@+id/textView2"
+                fontPath="font/yekan.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.75"
+                android:text="نوع بار"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:ignore="MissingPrefix"
+                />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_weight="0.25"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/delivery" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/barTypeDec"
+            fontPath="font/yekan.ttf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#e6e6e6"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:layout_marginTop="8dp"
+            android:paddingRight="8dp"
+            android:text="با توجه به نوع بار، می توانیم وسیله نقلیه مناسب را در اختیار شما قرار دهیم."
+            android:textAlignment="viewEnd"
+            android:textColor="#000"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/barType"
+            tools:ignore="MissingPrefix,RtlCompat"
+            />
+
+        <LinearLayout
+            android:id="@+id/kargar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/barTypeDec">
+
+
+            <TextView
+                android:id="@+id/tedadKargar"
+                fontPath="font/yekan.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.4"
+                android:text="خیر"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:ignore="MissingPrefix"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:id="@+id/textView3"
+                fontPath="font/yekan.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.4"
+                android:text="به کارگر نیاز دارید؟"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:ignore="MissingPrefix" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_weight="0.25"
+                app:srcCompat="@drawable/kargar" />
+
+
+
+
+        </LinearLayout>
+
+        <SeekBar
+            android:id="@+id/kargarSeekBar"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="0.35"
+            android:max="4"
+            android:progress="0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/kargar"
+            android:minHeight="25dp"
+            android:maxHeight="25dp"
+            />
+
+        <TextView
+            android:id="@+id/kargarDec"
+            fontPath="font/yekan.ttf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="#e6e6e6"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:paddingRight="8dp"
+            android:text="تعداد کارگر مورد نیاز خود را انتخاب کنید."
+            android:textAlignment="viewEnd"
+            android:textColor="#000"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/kargarSeekBar"
+            tools:ignore="MissingPrefix,RtlCompat" />
+
+        <LinearLayout
+            android:id="@+id/hazinedar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/kargarDec">
+
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:id="@+id/hazinedarSwitch"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:textOff="خیر"
+                android:textOn="بله"
+                android:layout_gravity="center"
+                android:text=" خیر "
+
+                />
+
+            <TextView
+                android:id="@+id/hazidarLable"
+                fontPath="font/yekan.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.3"
+                android:text="بار شامل اقلام حجیم است؟"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:ignore="MissingPrefix" />
+
+
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_weight="0.25"
+                app:srcCompat="@drawable/heavy" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/hazinedarDec"
+            fontPath="font/yekan.ttf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="#e6e6e6"
+            android:paddingBottom="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="8dp"
+            android:text="اقلام حجیم شامل کالا و یا وسایلی می شود که دارای حجم یا وزن زیادی است."
+            android:textAlignment="viewEnd"
+            android:textColor="#000"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/hazinedar"
+            tools:ignore="MissingPrefix,RtlCompat" />
+
+        <LinearLayout
+            android:id="@+id/bime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/hazinedarDec">
+
+
+            <Switch
+                android:id="@+id/bimeSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.25"
+                android:text=" خیر "
+                android:textOff="خیر"
+                android:textOn="بله"
+
+                />
+
+            <TextView
+                android:id="@+id/bimeLable"
+                fontPath="font/yekan.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.3"
+                android:text="بار بیمه شود؟"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:ignore="MissingPrefix" />
+
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_weight="0.25"
+                app:srcCompat="@drawable/bime" />
+
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/lineBreker"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            android:background="#e6e6e6"
+            app:layout_constraintTop_toBottomOf="@+id/bime" />
+
+        <LinearLayout
+            android:id="@+id/tozihat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lineBreker">
+
+
+            <EditText
+                android:id="@+id/tozihatKoli"
+                fontPath="font/yekan.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:layout_weight="0.6"
+                android:background="#e6e6e6"
+                android:focusedByDefault="false"
+                android:gravity="top"
+                android:hint="توضیحات بار"
+                android:lines="3"
+                android:padding="5dp"
+                android:textAlignment="viewEnd"
+                android:textColor="#000"
+                android:textCursorDrawable="@null"
+                tools:ignore="MissingPrefix,RtlCompat" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_weight="0.25"
+                app:srcCompat="@drawable/tozih" />
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/detailSubmit"
+            fontPath="font/yekan.ttf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            android:background="#37648d"
+            android:onClick="detailSubmitHandler"
+            android:stateListAnimator="@null"
+            android:text="صدور پیش فاکتور"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tozihat"
+            tools:ignore="MissingPrefix" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</ScrollView>
+
+

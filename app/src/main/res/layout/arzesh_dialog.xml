@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/asbabrootelement"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/frame"
+    >
+
+    <TextView
+        android:id="@+id/textViewSourceinfo"
+        fontPath="font/yekan.ttf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:paddingRight="90dp"
+        android:paddingLeft="90dp"
+        android:text="ارزش بار"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingPrefix" />
+
+
+    <LinearLayout
+        android:id="@+id/buttonLinear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/arzeshValue">
+
+        <Button
+            android:id="@+id/cancelArzesh"
+            fontPath="font/yekan.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:background="#e6e6e6"
+            android:onClick="cancelArzeshHandler"
+            android:stateListAnimator="@null"
+            android:text="انصراف"
+            android:textColor="#802020"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="MissingPrefix" />
+
+        <Button
+            android:id="@+id/arzeshButton"
+            fontPath="font/yekan.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:background="#37648d"
+            android:onClick="arzeshButtonHandler"
+            android:stateListAnimator="@null"
+            android:text="تایید"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingPrefix" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/arzeshValue"
+        fontPath="font/yekan.ttf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_marginTop="8dp"
+        android:background="#e6e6e6"
+        android:hint="ارزش بار به تومان"
+        android:paddingBottom="10dp"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:paddingTop="10dp"
+        android:textColor="#000"
+        android:textCursorDrawable="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSourceinfo"
+        tools:ignore="MissingPrefix"
+        android:textAlignment="center"
+        android:inputType="number"/>
+
+
+</android.support.constraint.ConstraintLayout>

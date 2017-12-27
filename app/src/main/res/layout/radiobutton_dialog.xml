@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layoutDirection="rtl"
+    android:background="@drawable/frame"
+
+    >
+
+
+    <TextView
+        android:id="@+id/textView3"
+        fontPath="font/yekan.ttf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:text="نوع بار"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingPrefix"
+        android:textAlignment="center"
+        android:textColor="#000"
+        android:padding="8dp"
+        android:gravity="start" />
+
+
+    <RadioGroup
+        android:id="@+id/barTypeRadioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:paddingBottom="48dp"
+        android:paddingRight="8dp"
+        android:paddingLeft="128dp"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@+id/textView3">
+
+        <RadioButton
+            android:id="@+id/edariRadio"
+            fontPath="font/yekan.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="لوازم اداری"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:ignore="MissingPrefix" />
+
+        <RadioButton
+            android:id="@+id/sanatiRadio"
+            fontPath="font/yekan.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="صنعتی"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:ignore="MissingPrefix" />
+
+        <RadioButton
+            android:id="@+id/tejariRadio"
+            fontPath="font/yekan.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="تجاری"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:ignore="MissingPrefix" />
+
+        <RadioButton
+            android:id="@+id/keshavarziRadio"
+            fontPath="font/yekan.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="کشاورزی"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:ignore="MissingPrefix" />
+
+        <RadioButton
+            android:id="@+id/ghazaeRadio"
+            fontPath="font/yekan.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="مواد غذایی"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:ignore="MissingPrefix" />
+
+        <RadioButton
+            android:id="@+id/otherRadio"
+            fontPath="font/yekan.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="سایر"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:ignore="MissingPrefix" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/barTypeButton"
+        fontPath="font/yekan.ttf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_margin="1dp"
+        android:background="#37648d"
+        android:onClick="barTypeButtonHandler"
+        android:stateListAnimator="@null"
+        android:text="ادامه"
+        android:textColor="#fff"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/barTypeRadioGroup"
+        tools:ignore="MissingPrefix" />
+
+</android.support.constraint.ConstraintLayout>
