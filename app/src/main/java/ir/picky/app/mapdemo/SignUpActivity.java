@@ -25,6 +25,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import ir.picky.app.mapdemo.services.MyService;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -178,6 +184,35 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public void signUpDetailHandler(View view) {
+        EditText fname = signUpDialog.findViewById(R.id.fnameValue);
+        EditText lname = signUpDialog.findViewById(R.id.lnameValue);
+        EditText email = signUpDialog.findViewById(R.id.emailValue);
+
+        if ( fname.getText().toString().equals("") || lname.getText().toString().equals("") ||
+                fname.getText().toString().equals(" ") || lname.getText().toString().equals(" ") ) {
+            Toast.makeText(this, "لطفا نام و نام خانوادگی را وارد کنید.", Toast.LENGTH_SHORT).show();
+        } else {
+
+            //send detail to server
+            String updateUrl = "http://admin:1234@comp.isfahanregister.com/api/update?mobile="+ phone +
+                    "&aut_key="+aut_key+"&lname="+ lname.getText().toString() +
+                    "&fname="+ fname.getText().toString() +"&email=" + email.getText().toString()  ;
+            Intent intentUpdate = new Intent(this, MyService.class);
+            intentUpdate.setData(Uri.parse(updateUrl));
+            startService(intentUpdate);
+
+            database = this.openOrCreateDatabase("Picky", MODE_PRIVATE, null);
+
+            ContentValues userValue = new ContentValues();
+            userValue.put("aut_key", aut_key); //These Fields should be your String values of actual column names
+            userValue.put("islogin", 1);
+            userValue.put("number" , ""+phone+"" );
+
+            database.insert("user" , null , userValue);
+            Intent intent = new Intent(this, MapsActivity.class);
+            startActivity(intent);
+
+        }
 
     }
 }
