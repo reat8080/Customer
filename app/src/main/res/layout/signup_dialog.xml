@@ -25,8 +25,8 @@
         tools:ignore="MissingPrefix"
         android:textAlignment="center"
         android:textColor="#000"
-        android:paddingLeft="80dp"
-        android:paddingRight="80dp"
+        android:paddingLeft="70dp"
+        android:paddingRight="70dp"
         android:gravity="start" />
 
 
@@ -89,6 +89,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -120,6 +121,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="1dp"
+        android:layout_marginTop="16dp"
         android:layout_weight="1"
         android:background="#37648d"
         android:onClick="signUpDetailHandler"

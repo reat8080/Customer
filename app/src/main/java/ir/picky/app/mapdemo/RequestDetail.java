@@ -2,6 +2,8 @@ package ir.picky.app.mapdemo;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -48,6 +50,8 @@ public class RequestDetail extends AppCompatActivity {
         View v = findViewById(R.id.barTypeButton);
         barTypeHadler(v);
 
+
+
         SeekBar kargarSeek = (SeekBar) findViewById(R.id.kargarSeekBar);
         kargarSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
@@ -78,6 +82,9 @@ public class RequestDetail extends AppCompatActivity {
 
 
         final Switch hazinedarSwitch = (Switch) findViewById(R.id.hazinedarSwitch);
+
+        if (Build.VERSION.SDK_INT < 21)
+            hazinedarSwitch.setText("");
         hazinedarSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -88,11 +95,15 @@ public class RequestDetail extends AppCompatActivity {
                     hazinedarSwitch.setText(" خیر ");
                     isHazinedar = false;
                 }
+                if (Build.VERSION.SDK_INT < 21)
+                    hazinedarSwitch.setText("");
             }
         });
 
 
         bimeSwitch = (Switch) findViewById(R.id.bimeSwitch);
+        if (Build.VERSION.SDK_INT < 21)
+            bimeSwitch.setText("");
         bimeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -107,6 +118,8 @@ public class RequestDetail extends AppCompatActivity {
                     bimeSwitch.setText(" خیر ");
                     isBime = false;
                 }
+                if (Build.VERSION.SDK_INT < 21)
+                    bimeSwitch.setText("");
             }
         });
 
@@ -174,6 +187,8 @@ public class RequestDetail extends AppCompatActivity {
     public void detailSubmitHandler(View view) {
         EditText tozihat = (EditText) findViewById(R.id.tozihatKoli);
         tozihatKoli = tozihat.getText().toString();
+        Intent intent = new Intent(this, Invoice.class);
+        startActivity(intent);
     }
 }
 

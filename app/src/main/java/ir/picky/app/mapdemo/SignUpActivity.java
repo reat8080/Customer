@@ -124,15 +124,12 @@ public class SignUpActivity extends AppCompatActivity {
                 Toast.makeText(this, "شماره را به درستی وارد کنید.", Toast.LENGTH_SHORT).show();
             } else {
 
-
-
 //        ContentValues initialValues = new ContentValues();
 //        initialValues.put("id", 1);
 //        initialValues.put("name", "Geevarghese");
 //        initialValues.put("mark", 100);
 //        initialValues.put("address", "No.20, Cochin, Kerala");
 //        database.insert("user", null, initialValues);
-
 
                 LinearLayout linearLayout = findViewById(R.id.mobileNumber);
                 linearLayout.setVisibility(View.INVISIBLE);

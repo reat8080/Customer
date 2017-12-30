@@ -168,7 +168,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_weight="0.35"
-            android:max="4"
+            android:max="6"
             android:progress="0"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -218,7 +218,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.4"
                 android:textOff="خیر"
-                android:textOn="بله"
+                android:textOn="بلی"
                 android:layout_gravity="center"
                 android:text=" خیر "
 
@@ -293,7 +293,7 @@
                 android:layout_weight="0.25"
                 android:text=" خیر "
                 android:textOff="خیر"
-                android:textOn="بله"
+                android:textOn="بلی"
 
                 />
 
@@ -380,7 +380,6 @@
             fontPath="font/yekan.ttf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:layout_margin="8dp"
             android:layout_marginTop="16dp"
             android:layout_weight="1"
