@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -28,4 +29,11 @@ public class Invoice extends AppCompatActivity {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
+    public void checkTakhfif(View view) {
+
+    }
+
+    public void requestSubmitHandler(View view) {
+
+    }
 }

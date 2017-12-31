@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/frame"
+    android:layoutDirection="rtl"
+    >
+
+    <TextView
+        android:id="@+id/textViewSourceinfo"
+        fontPath="font/yekan.ttf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="اطلاعات مبدا بارگیری"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingPrefix" />
+
+
+    <LinearLayout
+        android:id="@+id/buttonLinear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:padding="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sourcedetailbar">
+
+        <Button
+            android:id="@+id/nextstepsource"
+            fontPath="font/yekan.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:background="#37648d"
+            android:stateListAnimator="@null"
+            android:text="مرحله بعد"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingPrefix" />
+
+        <Button
+            android:id="@+id/cancelsource"
+            fontPath="font/yekan.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:background="#e6e6e6"
+            android:stateListAnimator="@null"
+            android:text="انصراف"
+            android:textColor="#802020"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="MissingPrefix" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+        <EditText
+            android:id="@+id/sourcefloor"
+            fontPath="font/yekan.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="#e6e6e6"
+            android:hint="طبقه"
+            android:maxLength="2"
+            android:inputType="number"
+            android:paddingBottom="10dp"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:paddingTop="10dp"
+            android:textAlignment="center"
+            android:textColor="#000"
+            android:textCursorDrawable="@null"
+            tools:ignore="MissingPrefix"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            />
+
+        <EditText
+            android:id="@+id/sourceunit"
+            fontPath="font/yekan.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="#e6e6e6"
+            android:hint="واحد"
+            android:maxLength="3"
+            android:inputType="number"
+            android:paddingBottom="10dp"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:paddingTop="10dp"
+            android:textAlignment="center"
+            android:textColor="#000"
+            android:textCursorDrawable="@null"
+            tools:ignore="MissingPrefix"
+            />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/sourcedetailbar"
+        fontPath="font/yekan.ttf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_marginTop="1dp"
+        android:background="#e6e6e6"
+        android:hint="توضیحات آدرس ..."
+        android:paddingBottom="10dp"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:paddingTop="10dp"
+        android:textColor="#000"
+        android:textCursorDrawable="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        tools:ignore="MissingPrefix" />
+
+</android.support.constraint.ConstraintLayout>
