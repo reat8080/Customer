@@ -1,8 +1,11 @@
 package ir.picky.app.mapdemo;
 
 import android.app.Dialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -24,15 +27,11 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class RequestDetail extends AppCompatActivity {
 
-    String barType;
-    boolean isHazinedar = false;
-    boolean isBime = false;
-    int tedadKargar = 0;
-    String tozihatKoli;
-    Dialog dialog ;
-    Dialog arzeshbarDialog ;
-    int arzeshebar;
-    Switch bimeSwitch;
+    String barType , tozihatKoli;
+    Dialog dialog , arzeshbarDialog , hazinedarDialog ;
+    int arzeshebar , isHazinedar = 0 , isBime=0 , tedadKargar = 0;
+    Switch bimeSwitch , hazinedarSwitch;
+    SQLiteDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +49,7 @@ public class RequestDetail extends AppCompatActivity {
         View v = findViewById(R.id.barTypeButton);
         barTypeHadler(v);
 
-
-
-        SeekBar kargarSeek = (SeekBar) findViewById(R.id.kargarSeekBar);
+        SeekBar kargarSeek =  findViewById(R.id.kargarSeekBar);
         kargarSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             TextView tedadKargar = (TextView) findViewById(R.id.tedadKargar);
@@ -69,19 +66,15 @@ public class RequestDetail extends AppCompatActivity {
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 Toast.makeText(RequestDetail.this, RequestDetail.this.tedadKargar +" کارگر انتخاب شد. ", Toast.LENGTH_SHORT).show();
-
             }
         });
 
-
-
-        final Switch hazinedarSwitch = (Switch) findViewById(R.id.hazinedarSwitch);
+         hazinedarSwitch = (Switch) findViewById(R.id.hazinedarSwitch);
 
         if (Build.VERSION.SDK_INT < 21)
             hazinedarSwitch.setText("");
@@ -90,16 +83,19 @@ public class RequestDetail extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b){
                     hazinedarSwitch.setText(" بلی ");
-                    isHazinedar = true;
+                    isHazinedar = 1;
+                    hazinedarDialog = new Dialog(RequestDetail.this);
+                    hazinedarDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    hazinedarDialog.setContentView(R.layout.hazinedar_dialog);
+                    hazinedarDialog.show();
                 } else {
                     hazinedarSwitch.setText(" خیر ");
-                    isHazinedar = false;
+                    isHazinedar = 0;
                 }
                 if (Build.VERSION.SDK_INT < 21)
                     hazinedarSwitch.setText("");
             }
         });
-
 
         bimeSwitch = (Switch) findViewById(R.id.bimeSwitch);
         if (Build.VERSION.SDK_INT < 21)
@@ -109,20 +105,19 @@ public class RequestDetail extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b){
                     bimeSwitch.setText(" بلی ");
-                    isBime = true;
+                    isBime = 1;
                     arzeshbarDialog = new Dialog(RequestDetail.this);
                     arzeshbarDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                     arzeshbarDialog.setContentView(R.layout.arzesh_dialog);
                     arzeshbarDialog.show();
                 } else {
                     bimeSwitch.setText(" خیر ");
-                    isBime = false;
+                    isBime = 0;
                 }
                 if (Build.VERSION.SDK_INT < 21)
                     bimeSwitch.setText("");
             }
         });
-
 
     }
 
@@ -131,20 +126,13 @@ public class RequestDetail extends AppCompatActivity {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
-
     public void barTypeHadler (View view) {
 
         dialog = new Dialog(this);
-
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.radiobutton_dialog);
         dialog.show();
-//        Spinner spinner = (Spinner) findViewById(R.id.spiner);
-//        String stringss = String.valueOf(spinner.getSelectedItem());
-//        Toast.makeText(this, stringss, Toast.LENGTH_SHORT).show();
     }
-
-
 
     public void barTypeButtonHandler(View view) {
         RadioGroup radioGroup = (RadioGroup) dialog.findViewById(R.id.barTypeRadioGroup);
@@ -164,8 +152,15 @@ public class RequestDetail extends AppCompatActivity {
     public void cancelArzeshHandler(View view) {
         bimeSwitch.setText(" خیر ");
         bimeSwitch.setChecked(false);
-        isBime = false;
+        isBime = 0;
         arzeshbarDialog.hide();
+
+    }
+    public void cancelHazinedar(View view) {
+        hazinedarSwitch.setText(" خیر ");
+        hazinedarSwitch.setChecked(false);
+        isHazinedar = 0;
+        hazinedarDialog.hide();
 
     }
 
@@ -179,16 +174,40 @@ public class RequestDetail extends AppCompatActivity {
             arzeshbarDialog.hide();
         }
 
+    }
 
+    public void hazinedarButtonHandler(View view) {
+        EditText editText = (EditText) hazinedarDialog.findViewById(R.id.hazinedarValue);
+        if (editText.length() == 0) {
+            Toast.makeText(this, "تعداد اقلام حجیم را وارد کنید", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            isHazinedar = Integer.valueOf(editText.getText().toString());
+            hazinedarDialog.hide();
+        }
 
     }
 
-
     public void detailSubmitHandler(View view) {
-        EditText tozihat = (EditText) findViewById(R.id.tozihatKoli);
+        EditText tozihat = findViewById(R.id.tozihatKoli);
         tozihatKoli = tozihat.getText().toString();
+        storeInDatabase();
         Intent intent = new Intent(this, Invoice.class);
         startActivity(intent);
+    }
+
+    private void storeInDatabase() {
+        database = this.openOrCreateDatabase("Picky", MODE_PRIVATE, null);
+        Cursor c = database.rawQuery("SELECT * FROM request", null);
+        int lastRowId = c.getCount();
+        ContentValues requestValue = new ContentValues();
+        requestValue.put("tozihat" , tozihatKoli);
+        requestValue.put("is_hazinedar" , isHazinedar);
+        requestValue.put("is_bime" , isBime);
+        requestValue.put("tedad_kargar" , tedadKargar);
+        requestValue.put("bartype" , barType);
+
+        database.update("request", requestValue, "rowid = "+lastRowId  ,null);
     }
 }
 

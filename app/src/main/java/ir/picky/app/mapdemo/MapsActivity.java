@@ -4,11 +4,13 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.BroadcastReceiver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
@@ -66,12 +68,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     boolean buttonStat = true;
     LocationManager locationManager;
     LocationListener locationListener;
+    Location lastKnownLocation ;
     boolean locationFlag = true;
     boolean doubleBack = false;
     public final long delayBackPressed = 2000;
     Dialog barType, sourceDetail, decDetail;
     public int sourceLevel, sourceUnit, decLevel, decUnit , distanceInmeter;
     String sourceDesc, decDesc;
+    SQLiteDatabase database;
     private final String TAG = "PLACECOMPLETE_EXERCISE";
     private final int PLACE_AUTOCOMPLETE_REQUEST = 1001;
 
@@ -167,11 +171,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
                 mMap.setMyLocationEnabled(true);
+                lastKnownLocation = locationManager.getLastKnownLocation (LocationManager.GPS_PROVIDER);
+                if (lastKnownLocation == null || lastKnownLocation.getLatitude() == 0) {
+                    lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                }
                 //mMap.getUiSettings().setMyLocationButtonEnabled(false);
                 return;
             }
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
             mMap.setMyLocationEnabled(true);
+            lastKnownLocation = locationManager.getLastKnownLocation (LocationManager.GPS_PROVIDER);
+            if (lastKnownLocation == null || lastKnownLocation.getLatitude() == 0) {
+                lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+            }
             //mMap.getUiSettings().setMyLocationButtonEnabled(false);
         } else {
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -180,18 +192,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             } else {
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
                 mMap.setMyLocationEnabled(true);
+                lastKnownLocation = locationManager.getLastKnownLocation (LocationManager.GPS_PROVIDER);
+                if (lastKnownLocation == null || lastKnownLocation.getLatitude() == 0) {
+                    lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                }
                 //mMap.getUiSettings().setMyLocationButtonEnabled(false);
             }
         }
-        //Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-        Criteria criteria = new Criteria();
-        String bestProvider = locationManager.getBestProvider(criteria, false);
-        Location lastKnownLocation = new Location(bestProvider);
+
         LatLng userLocation;
-
-        // Get location from GPS رضا
-        //Location lastKnownLocation = new Location(LocationManager.GPS_PROVIDER);
-
         if (lastKnownLocation == null || lastKnownLocation.getLatitude() == 0) {
             userLocation = new LatLng(32.657351, 51.677506);   //meidon emam
         } else {
@@ -515,6 +524,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void storeInDatabase() {
 
+        database = this.openOrCreateDatabase("Picky", MODE_PRIVATE, null);
+        database.execSQL("CREATE TABLE IF NOT EXISTS request (srclat DOUBLE, srclon DOUBLE ," +
+                " declat DOUBLE, declon DOUBLE, srclevel INT(3) , srcunit  INT(2), declevel  INT(3), decunit  INT(2) ," +
+                " distance INT , srcdesc VARCHAR , decdesc VARCHAR , is_active INT(1), cartype VARCHAR ," +
+                " tozihat VARCHAR ,  is_hazinedar INT(2) , is_bime INT(1) , tedad_kargar INT(2), bartype VARCHAR)");
+       // sourceLevel, sourceUnit, decLevel, decUnit , distanceInmeter sourceDesc, decDesc
+        ContentValues requestValue = new ContentValues();
+        requestValue.put("is_active" , 1);
+        requestValue.put("srclat" , source.latitude);
+        requestValue.put("srclon" , source.longitude);
+        requestValue.put("declat" , destination.latitude);
+        requestValue.put("declon" , destination.longitude);
+        requestValue.put("srclevel" , sourceLevel);
+        requestValue.put("srcunit" , sourceUnit);
+        requestValue.put("declevel" , decLevel);
+        requestValue.put("decunit" , decUnit);
+        requestValue.put("distance" , distanceInmeter);
+        requestValue.put("srcdesc" , sourceDesc);
+        requestValue.put("decdesc" , decDesc);
+
+        database.insert("request" , null , requestValue);
     }
 
 }
