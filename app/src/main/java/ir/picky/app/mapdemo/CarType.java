@@ -16,7 +16,8 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class CarType extends AppCompatActivity {
 
-    String carType ;
+
+    int barTypeHaml = 0 , carType =1;
     SQLiteDatabase database;
 
     @Override
@@ -39,28 +40,37 @@ public class CarType extends AppCompatActivity {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
-    public void neysanchoose(View view) {
-        carType = "نیسان";
-        storeInDatabase();
-        startActivity(new Intent(this, RequestDetail.class));
-    }
-
     public void vanetchoose(View view) {
-        carType = "وانت";
+        carType = 1;
         storeInDatabase();
-        startActivity(new Intent(this, RequestDetail.class));
+        startActivityRequest();
     }
 
-    public void camiunetchoose(View view) {
-        carType = "کامیونت";
+    public void neysanchoose(View view) {
+        carType = 2 ;
         storeInDatabase();
-        startActivity(new Intent(this, RequestDetail.class));
+        startActivityRequest();
     }
 
     public void minicamiunetchoose(View view) {
-        carType = "مینی کامیونت";
+        carType = 3;
         storeInDatabase();
-        startActivity(new Intent(this, RequestDetail.class));
+        startActivityRequest();
+    }
+
+    public void camiunetchoose(View view) {
+        carType = 4;
+        storeInDatabase();
+        startActivityRequest();
+    }
+
+    public void startActivityRequest() {
+
+        Intent intentEx = getIntent();
+        barTypeHaml = intentEx.getIntExtra("barTypeHaml" , 0);
+        Intent intent = new Intent(this, RequestDetail.class) ;
+        intent.putExtra("key" , barTypeHaml);
+        startActivity(intent);
     }
 
     private void storeInDatabase() {

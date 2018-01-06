@@ -73,7 +73,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     boolean doubleBack = false;
     public final long delayBackPressed = 2000;
     Dialog barType, sourceDetail, decDetail;
-    public int sourceLevel, sourceUnit, decLevel, decUnit , distanceInmeter;
+    public int sourceLevel, sourceUnit, decLevel, decUnit , distanceInmeter , barTypeHaml = 0;
     String sourceDesc, decDesc;
     SQLiteDatabase database;
     private final String TAG = "PLACECOMPLETE_EXERCISE";
@@ -386,6 +386,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         barbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                storeInDatabase();
                 Intent intent = new Intent(MapsActivity.this, CarType.class) ;
                 startActivity(intent);
             }
@@ -516,7 +517,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 } else {
                     decLevel = Integer.valueOf(view.getText().toString());
                     storeInDatabase();
-                    startActivity(new Intent(MapsActivity.this, CarType.class));
+                    barTypeHaml = 1;
+                    Intent intent = new Intent(MapsActivity.this, CarType.class);
+                    intent.putExtra("barTypeHaml" , barTypeHaml);
+                    startActivity(intent);
                 }
             }
         });
@@ -527,8 +531,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         database = this.openOrCreateDatabase("Picky", MODE_PRIVATE, null);
         database.execSQL("CREATE TABLE IF NOT EXISTS request (srclat DOUBLE, srclon DOUBLE ," +
                 " declat DOUBLE, declon DOUBLE, srclevel INT(3) , srcunit  INT(2), declevel  INT(3), decunit  INT(2) ," +
-                " distance INT , srcdesc VARCHAR , decdesc VARCHAR , is_active INT(1), cartype VARCHAR ," +
-                " tozihat VARCHAR ,  is_hazinedar INT(2) , is_bime INT(1) , tedad_kargar INT(2), bartype VARCHAR)");
+                " distance INT , srcdesc VARCHAR , decdesc VARCHAR , is_active INT(1), cartype INT(1) ," +
+                " tozihat VARCHAR ,  is_hazinedar INT(2) , is_bime INT(1), arzeshebar INT , tedad_kargar INT(2), bartype VARCHAR)");
        // sourceLevel, sourceUnit, decLevel, decUnit , distanceInmeter sourceDesc, decDesc
         ContentValues requestValue = new ContentValues();
         requestValue.put("is_active" , 1);
@@ -543,6 +547,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         requestValue.put("distance" , distanceInmeter);
         requestValue.put("srcdesc" , sourceDesc);
         requestValue.put("decdesc" , decDesc);
+
 
         database.insert("request" , null , requestValue);
     }

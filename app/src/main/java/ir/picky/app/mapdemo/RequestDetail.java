@@ -29,9 +29,11 @@ public class RequestDetail extends AppCompatActivity {
 
     String barType , tozihatKoli;
     Dialog dialog , arzeshbarDialog , hazinedarDialog ;
-    int arzeshebar , isHazinedar = 0 , isBime=0 , tedadKargar = 0;
+    int arzeshebar = 0 , isHazinedar = 0 , isBime=0 , tedadKargar = 0;
     Switch bimeSwitch , hazinedarSwitch;
     SQLiteDatabase database;
+    //Intent intent = getIntent();
+    int  barTypeHaml ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +49,14 @@ public class RequestDetail extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
         View v = findViewById(R.id.barTypeButton);
+        Intent intent = getIntent();
+        barTypeHaml = intent.getIntExtra("key" , barTypeHaml);
+        if ( barTypeHaml == 1) {
+            Button button = findViewById(R.id.barTypeButton);
+            button.setText("وسایل منزل");
+        }
         barTypeHadler(v);
+
 
         SeekBar kargarSeek =  findViewById(R.id.kargarSeekBar);
         kargarSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -127,11 +136,13 @@ public class RequestDetail extends AppCompatActivity {
     }
 
     public void barTypeHadler (View view) {
-
-        dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.radiobutton_dialog);
-        dialog.show();
+        if ( barTypeHaml == 1);
+        else {
+            dialog = new Dialog(this);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setContentView(R.layout.radiobutton_dialog);
+            dialog.show();
+        }
     }
 
     public void barTypeButtonHandler(View view) {
@@ -206,6 +217,7 @@ public class RequestDetail extends AppCompatActivity {
         requestValue.put("is_bime" , isBime);
         requestValue.put("tedad_kargar" , tedadKargar);
         requestValue.put("bartype" , barType);
+        requestValue.put("arzeshebar" , arzeshebar);
 
         database.update("request", requestValue, "rowid = "+lastRowId  ,null);
     }
