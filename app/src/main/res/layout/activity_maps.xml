@@ -8,6 +8,7 @@
     android:layout_height="match_parent"
     tools:context="ir.picky.app.mapdemo.MapsActivity"
     android:orientation="vertical"
+    android:paddingTop="56dp"
     android:id="@+id/mapActivity">
 
      <fragment

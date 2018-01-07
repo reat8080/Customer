@@ -1,6 +1,7 @@
 package ir.picky.app.mapdemo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBar;
@@ -150,6 +151,6 @@ public class Invoice extends AppCompatActivity {
     }
 
     public void requestSubmitHandler(View view) {
-
+        startActivity(new Intent(this , RequestsActivity.class));
     }
 }

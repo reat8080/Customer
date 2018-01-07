@@ -15,13 +15,31 @@
         android:layoutDirection="rtl"
         tools:context="ir.picky.app.mapdemo.Invoice">
 
+        <TextView
+            android:id="@+id/pageTitle"
+            fontPath="font/yekan.ttf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#000080"
+            android:paddingBottom="20dp"
+            android:paddingTop="20dp"
+            android:text="صورت حساب"
+            android:textAlignment="center"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingPrefix" />
+
         <LinearLayout
             android:id="@+id/hazinehdetail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/frame"
             android:focusable="true"
             android:focusableInTouchMode="true"
@@ -29,7 +47,7 @@
             android:padding="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/pageTitle">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -74,9 +92,9 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/kargarRelative"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/kargarRelative"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
@@ -118,9 +136,9 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/hazinedarRL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/hazinedarRL"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
@@ -162,9 +180,9 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/levelRelative"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/levelRelative"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"

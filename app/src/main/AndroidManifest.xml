@@ -35,7 +35,8 @@
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+            android:label="@string/title_activity_maps"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".ChooseServiceTypePopUp"
             android:theme="@style/AppTheme.popupforchoceservice" />
@@ -47,22 +48,22 @@
         <activity
             android:name=".AsbabSourceDetail"
             android:label="@string/title_activity_asbabsourcedetail"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar2" />
         <activity
             android:name=".AsbabDestinationDetail"
             android:label="@string/title_activity_asbabsourcedetail"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar2" />
         <activity
             android:name=".CarType"
             android:label="انتخاب خودرو"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".RequestDetail"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar2" />
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_maps"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -70,7 +71,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".SignUpActivity" />
-        <activity android:name=".Invoice"></activity>
+        <activity android:name=".Invoice" />
+        <activity android:name=".RequestsActivity" />
+        <activity
+            android:name=".NavigationActivity"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

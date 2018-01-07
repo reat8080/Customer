@@ -5,11 +5,21 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -29,9 +39,6 @@ public class CarType extends AppCompatActivity {
                 .build());
 
         setContentView(R.layout.activity_car_type);
-
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
 
     }
 
@@ -81,4 +88,7 @@ public class CarType extends AppCompatActivity {
         requestValue.put("cartype" , carType);
         database.update("request", requestValue, "rowid = "+lastRowId  ,null);
     }
+
+
+
 }
