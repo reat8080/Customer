@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -59,6 +60,8 @@ public class SignUpActivity extends AppCompatActivity {
         LocalBroadcastManager.getInstance(getApplicationContext())
                 .registerReceiver(mBroadcastReceiver,
                         new IntentFilter(MyService.MY_SERVICE_MESSAGE));
+
+
     }
 
     @Override
@@ -137,7 +140,7 @@ public class SignUpActivity extends AppCompatActivity {
                 button.setText("بررسی کد");
 
                 TextView textView = findViewById(R.id.textView5);
-                textView.setText("کد شناسایی برای شماره "+phone+ " ارسال شد. " );
+//                textView.setText("کد شناسایی برای شماره "+phone+ " ارسال شد. " );
 
                 editTextCode.setVisibility(View.VISIBLE);
 

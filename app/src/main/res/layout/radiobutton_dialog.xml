@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layoutDirection="rtl"
-    android:background="@drawable/frame"
+    android:background="@drawable/dark_frame"
 
     >
 
@@ -24,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingPrefix"
         android:textAlignment="center"
-        android:textColor="#000"
+        android:textColor="#fff"
         android:padding="8dp"
         android:gravity="start" />
 
@@ -50,7 +50,9 @@
             android:text="لوازم اداری"
             android:textSize="20sp"
             android:textStyle="bold"
-            tools:ignore="MissingPrefix" />
+            tools:ignore="MissingPrefix"
+            android:textColor="#fff"
+            android:buttonTint="#fff"/>
 
         <RadioButton
             android:id="@+id/sanatiRadio"
@@ -61,7 +63,9 @@
             android:text="صنعتی"
             android:textSize="20sp"
             android:textStyle="bold"
-            tools:ignore="MissingPrefix" />
+            tools:ignore="MissingPrefix"
+            android:textColor="#fff"
+            android:buttonTint="#fff"/>
 
         <RadioButton
             android:id="@+id/tejariRadio"
@@ -72,7 +76,9 @@
             android:text="تجاری"
             android:textSize="20sp"
             android:textStyle="bold"
-            tools:ignore="MissingPrefix" />
+            tools:ignore="MissingPrefix"
+            android:textColor="#fff"
+            android:buttonTint="#fff"/>
 
         <RadioButton
             android:id="@+id/keshavarziRadio"
@@ -83,7 +89,9 @@
             android:text="کشاورزی"
             android:textSize="20sp"
             android:textStyle="bold"
-            tools:ignore="MissingPrefix" />
+            tools:ignore="MissingPrefix"
+            android:textColor="#fff"
+            android:buttonTint="#fff"/>
 
         <RadioButton
             android:id="@+id/ghazaeRadio"
@@ -94,7 +102,9 @@
             android:text="مواد غذایی"
             android:textSize="20sp"
             android:textStyle="bold"
-            tools:ignore="MissingPrefix" />
+            tools:ignore="MissingPrefix"
+            android:textColor="#fff"
+            android:buttonTint="#fff"/>
 
         <RadioButton
             android:id="@+id/otherRadio"
@@ -105,27 +115,25 @@
             android:text="سایر"
             android:textSize="20sp"
             android:textStyle="bold"
-            tools:ignore="MissingPrefix" />
+            tools:ignore="MissingPrefix"
+            android:textColor="#fff"
+            android:buttonTint="#fff"/>
     </RadioGroup>
 
-    <Button
-        android:id="@+id/barTypeButton"
-        fontPath="font/yekan.ttf"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_margin="1dp"
-        android:background="#37648d"
-        android:onClick="barTypeButtonHandler"
-        android:stateListAnimator="@null"
-        android:text="ادامه"
-        android:textColor="#fff"
-        android:textSize="20sp"
-        android:textStyle="bold"
+    <ImageButton
+        android:id="@+id/imageButton4"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="8dp"
+        android:scaleType="fitXY"
+        android:background="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/barTypeRadioGroup"
-        tools:ignore="MissingPrefix" />
+        android:src="@drawable/continue_but"
+        android:onClick="barTypeButtonHandler"/>
+
 
 </android.support.constraint.ConstraintLayout>

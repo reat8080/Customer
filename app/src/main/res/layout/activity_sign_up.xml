@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ir.picky.app.mapdemo.SignUpActivity"
     android:background="#000080"
-    >
+    tools:context="ir.picky.app.mapdemo.SignUpActivity">
 
     <LinearLayout
         android:id="@+id/mobileNumber"
-        android:orientation="horizontal"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
-        android:layout_marginBottom="16dp"
+        android:background="#fff"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/loginButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:background="#fff">
+        app:layout_constraintStart_toStartOf="parent">
 
 
         <EditText
@@ -27,17 +28,16 @@
             fontPath="font/yekan.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="32dp"
             android:layout_weight="0.15"
             android:ems="10"
+            android:hint="شماره همراه"
             android:inputType="number"
             android:maxLength="11"
-            tools:ignore="MissingPrefix"
+            android:paddingLeft="32dp"
             android:textColor="#000"
             android:textCursorDrawable="@null"
             android:textSize="20sp"
-            android:hint="شماره همراه"
-            />
+            tools:ignore="MissingPrefix" />
 
         <ImageView
             android:layout_width="0dp"
@@ -105,19 +105,34 @@
     <TextView
         android:id="@+id/textView5"
         fontPath="font/yekan.ttf"
-        android:textSize="18sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:textColor="#fff"
         android:text=""
+        android:textColor="#fff"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/editTextCode"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingPrefix" />
+
+    <ImageView
+        android:id="@+id/signup_picky_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/mobileNumber"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/signupimg_vector_image"
+        tools:ignore="VectorDrawableCompat" />
 
 </android.support.constraint.ConstraintLayout>
