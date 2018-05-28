@@ -84,6 +84,7 @@ public class Invoice extends AppCompatActivity {
         else if (carType == 2) hazineHamlPaye = 30000;
         else if (carType == 3) hazineHamlPaye = 60000;
         else if (carType == 4) hazineHamlPaye = 80000;
+        else if (carType == 5) hazineHamlPaye = 200000;
         if (distance > 5000) {
             hazineHaml = distance - 5000;
             hazineHaml += hazineHamlPaye;

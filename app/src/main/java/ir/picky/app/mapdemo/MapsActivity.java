@@ -85,6 +85,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     SQLiteDatabase database;
     private final String TAG = "PLACECOMPLETE_EXERCISE";
     private final int PLACE_AUTOCOMPLETE_REQUEST = 1001;
+    int serviceType;
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -152,6 +153,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .registerReceiver(mBroadcastReceiver,
                         new IntentFilter(MyService.MY_SERVICE_MESSAGE));
 
+        Intent intent = getIntent();
+        serviceType = intent.getIntExtra("type" , 1);
 
     }
 
@@ -377,7 +380,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //            View v = findViewById(R.id.mapdimout);
 //            v.setVisibility(View.VISIBLE);
 
-            startBarTypeDialog();
+            //commented for bar bargashty
+            //startBarTypeDialog();
+
+            if (serviceType == 1){
+                storeInDatabase();
+                Intent intent2 = new Intent(MapsActivity.this, CarType.class) ;
+                startActivity(intent2);
+            } else if (serviceType == 2) {
+                asbabClicked();
+            }
 
 //            v = findViewById(R.id.sourceConfirmButton);
 //            v.setVisibility(View.INVISIBLE);
@@ -444,11 +456,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         if (doubleBack) {
             super.onBackPressed();
-            Intent intent = new Intent(Intent.ACTION_MAIN);
-            intent.addCategory(Intent.CATEGORY_HOME);
-            startActivity(intent);
-            int pid = android.os.Process.myPid();
-            android.os.Process.killProcess(pid);
+//            Intent intent = new Intent(Intent.ACTION_MAIN);
+//            intent.addCategory(Intent.CATEGORY_HOME);
+//            startActivity(intent);
+//            int pid = android.os.Process.myPid();
+//            android.os.Process.killProcess(pid);
+            //not necessary
 //            if (Build.VERSION.SDK_INT  >= Build.VERSION_CODES.LOLLIPOP)
 //                finishAndRemoveTask();
 //            else
@@ -456,7 +469,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
         this.doubleBack = true;
-        Toast.makeText(this, "برای خروج بازگشت را دوباره بزنید.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "برای برگشت به مرحله انتخاب سرویس بازگشت را دوباره بزنید.", Toast.LENGTH_SHORT).show();
 
         mMap.clear();
         Button btn = findViewById(R.id.sourceConfirmButton);
@@ -587,10 +600,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         requestValue.put("srcdesc" , sourceDesc);
         requestValue.put("decdesc" , decDesc);
 
-
         database.insert("request" , null , requestValue);
     }
-
-
 
 }

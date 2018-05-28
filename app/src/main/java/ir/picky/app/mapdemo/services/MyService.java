@@ -1,4 +1,5 @@
 package ir.picky.app.mapdemo.services;
+
 import android.app.IntentService;
 import android.content.Intent;
 import android.net.Uri;

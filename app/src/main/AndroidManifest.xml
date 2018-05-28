@@ -36,7 +36,7 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ChooseServiceTypePopUp"
             android:theme="@style/AppTheme.popupforchoceservice" />
@@ -76,7 +76,9 @@
         <activity
             android:name=".NavigationActivity"
             android:label="@string/title_activity_navigation"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ServiceType" />
+        <activity android:name=".BargashtyDetail"></activity>
     </application>
 
 </manifest>
